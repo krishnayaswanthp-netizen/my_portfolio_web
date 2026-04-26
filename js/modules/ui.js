@@ -57,6 +57,43 @@ export function initProjectFilters() {
 
 // --- Modals ---
 const projectDetails = {
+    "RAG Customer Support Assistant": {
+        title: "RAG Customer Support Assistant",
+        description: "A retrieval-augmented assistant that answers customer support questions from a local knowledge base. It validates runtime configuration, loads document context, and responds through an interactive command-line workflow.",
+        technologies: ["Python", "RAG", "ChromaDB", "Groq API", "dotenv"],
+        features: [
+            "Knowledge-base grounded answers",
+            "Local vector database workflow",
+            "Environment validation for required API keys",
+            "Interactive CLI support loop",
+            "Graceful exit handling"
+        ]
+    },
+    "Opaque Zero-Trust Sanitizer": {
+        title: "Opaque Zero-Trust Sanitizer",
+        description: "A secure file sanitization dashboard for scanning uploads, identifying metadata exposure, generating verified clean copies, and handing off sanitized outputs through a single workflow.",
+        technologies: ["Flask", "Python", "Security", "Dashboard UI", "File Processing"],
+        features: [
+            "Single-file and batch intake flows",
+            "Metadata exposure review",
+            "Verified clean-copy delivery",
+            "Backend status visibility",
+            "Focused dark dashboard interface"
+        ]
+    },
+    "CivicConnect": {
+        title: "CivicConnect",
+        description: "A citizen issue reporting platform built around a Dockerized FastAPI microservices backend, PostgreSQL storage, an Nginx API gateway, and a modular multi-page frontend that starts from an auth-first flow.",
+        technologies: ["FastAPI", "PostgreSQL", "Docker Compose", "Nginx", "JWT", "bcrypt", "AI Inference"],
+        features: [
+            "Microservices for reports, issues, auth, AI inference, and notifications",
+            "Nginx gateway routes for report submission, issue listing, signup, login, and session checks",
+            "JWT-protected report and dashboard APIs",
+            "Location reporting flow with locked coordinate validation",
+            "AI urgency labeling with deterministic keyword fallback",
+            "Critical-only email notification flow with console fallback"
+        ]
+    },
     "Haven": {
         title: "Haven - Mental Health Support System",
         description: "A full-stack mental health support platform featuring an intelligent chatbot with a hybrid AI architecture. The system offloads conversational generation to a Hugging Face Space API for performance while keeping sentiment and emotion analysis models running locally for real-time state tracking.",

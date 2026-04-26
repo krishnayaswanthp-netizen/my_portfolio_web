@@ -66,48 +66,12 @@ export function initScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-
-                // Trigger skill bars if visible
-                if (entry.target.id === "skills" || entry.target.querySelector(".progress-bar")) {
-                    animateSkillBars();
-                }
                 obs.unobserve(entry.target);
             }
         });
     }, 100), { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
     reveals.forEach(el => obs.observe(el));
-}
-
-// --- Skill Bars ---
-function animateSkillBars() {
-    const bars = qsa(".progress-bar");
-    bars.forEach(bar => {
-        if (bar.dataset.animated) return;
-        const target = Number(bar.getAttribute("data-target") || 0);
-
-        bar.style.width = target + "%";
-        bar.dataset.animated = "true";
-
-        const parent = bar.closest(".skill");
-        if (parent) {
-            const valEl = parent.querySelector(".skill-value");
-            if (valEl) countUp(valEl, 0, target, 1000);
-        }
-    });
-}
-
-function countUp(el, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        el.textContent = Math.floor(progress * (end - start) + start) + "%";
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
 }
 
 // --- Smooth Scroll (Internal Links) ---

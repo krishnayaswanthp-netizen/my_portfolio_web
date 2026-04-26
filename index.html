@@ -117,7 +117,7 @@
           <div class="profile-card glass-effect" role="region" aria-labelledby="profile-heading">
             <h3 id="profile-heading" class="sr-only">Profile Information</h3>
             <div class="profile-photo-container">
-              <img class="profile-photo" src="assets/my_pro_pic.png" alt="Portrait — PANCHAGNULA KRISHNA YASWANTH"
+              <img class="profile-photo" src="assets/my_pro_pic.png?v=20260426" alt="Portrait — PANCHAGNULA KRISHNA YASWANTH"
                 loading="lazy">
               <div class="status-indicator" aria-label="Online status"></div>
             </div>
@@ -202,58 +202,104 @@
     <!-- SKILLS -->
     <section id="skills" class="section --reveal" aria-labelledby="skills-heading">
       <div class="container">
-        <h2 id="skills-heading" class="section-title">Skills & Expertise</h2>
+        <h2 id="skills-heading" class="section-title">Tech Stack</h2>
 
-        <div class="skills-grid">
-          <div class="skill">
-            <div class="skill-meta">
-              <strong>Java</strong>
-              <span class="skill-value" data-value="98">98%</span>
-            </div>
-            <div class="progress" aria-hidden="true">
-              <div class="progress-bar" style="width:0%" data-target="98"></div>
-            </div>
-          </div>
+        <div class="stack-strip" aria-label="Primary technologies">
+          <span>Python</span>
+          <span>FastAPI</span>
+          <span>JavaScript</span>
+          <span>PostgreSQL</span>
+          <span>Docker</span>
+          <span>Nginx</span>
+        </div>
 
-          <div class="skill">
+        <div class="skills-grid" aria-label="Technology groups">
+          <article class="skill tech-card">
             <div class="skill-meta">
-              <strong>Python</strong>
-              <span class="skill-value" data-value="90">90%</span>
+              <strong>Languages</strong>
+              <span>Core</span>
             </div>
-            <div class="progress" aria-hidden="true">
-              <div class="progress-bar" style="width:0%" data-target="90"></div>
+            <div class="tech-list">
+              <span>Python</span>
+              <span>Java</span>
+              <span>JavaScript</span>
+              <span>SQL</span>
+              <span>HTML</span>
+              <span>CSS</span>
             </div>
-          </div>
+          </article>
 
-          <div class="skill">
+          <article class="skill tech-card">
             <div class="skill-meta">
-              <strong>JavaScript</strong>
-              <span class="skill-value" data-value="90">90%</span>
+              <strong>Frontend</strong>
+              <span>UI</span>
             </div>
-            <div class="progress" aria-hidden="true">
-              <div class="progress-bar" style="width:0%" data-target="90"></div>
+            <div class="tech-list">
+              <span>Responsive UI</span>
+              <span>Vanilla JS</span>
+              <span>Multi-page Apps</span>
+              <span>Dashboard UX</span>
+              <span>Accessibility</span>
             </div>
-          </div>
+          </article>
 
-          <div class="skill">
+          <article class="skill tech-card">
             <div class="skill-meta">
-              <strong>HTML & CSS</strong>
-              <span class="skill-value" data-value="95">95%</span>
+              <strong>Backend & APIs</strong>
+              <span>Services</span>
             </div>
-            <div class="progress" aria-hidden="true">
-              <div class="progress-bar" style="width:0%" data-target="95"></div>
+            <div class="tech-list">
+              <span>FastAPI</span>
+              <span>Flask</span>
+              <span>REST APIs</span>
+              <span>Microservices</span>
+              <span>JWT Auth</span>
+              <span>bcrypt</span>
             </div>
-          </div>
+          </article>
 
-          <div class="skill">
+          <article class="skill tech-card">
             <div class="skill-meta">
-              <strong>UI/UX Design</strong>
-              <span class="skill-value" data-value="85">85%</span>
+              <strong>AI & Data</strong>
+              <span>Applied AI</span>
             </div>
-            <div class="progress" aria-hidden="true">
-              <div class="progress-bar" style="width:0%" data-target="85"></div>
+            <div class="tech-list">
+              <span>RAG</span>
+              <span>ChromaDB</span>
+              <span>Hugging Face API</span>
+              <span>PyTorch</span>
+              <span>OpenCV</span>
+              <span>MediaPipe</span>
             </div>
-          </div>
+          </article>
+
+          <article class="skill tech-card">
+            <div class="skill-meta">
+              <strong>Databases</strong>
+              <span>Storage</span>
+            </div>
+            <div class="tech-list">
+              <span>PostgreSQL</span>
+              <span>MongoDB</span>
+              <span>MySQL</span>
+              <span>ChromaDB</span>
+              <span>JDBC</span>
+            </div>
+          </article>
+
+          <article class="skill tech-card">
+            <div class="skill-meta">
+              <strong>DevOps & Security</strong>
+              <span>Deploy</span>
+            </div>
+            <div class="tech-list">
+              <span>Docker Compose</span>
+              <span>Nginx</span>
+              <span>Environment Config</span>
+              <span>API Gateway</span>
+              <span>File Sanitization</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -266,13 +312,16 @@
         <div class="project-controls">
           <div class="filters" role="toolbar" aria-label="Project filters">
             <button class="chip active" data-filter="all" aria-pressed="true">All</button>
-            <button class="chip" data-filter="frontend">Frontend & Back-end</button>
+            <button class="chip" data-filter="frontend">Frontend</button>
+            <button class="chip" data-filter="backend">Backend</button>
+            <button class="chip" data-filter="ai">AI/ML</button>
+            <button class="chip" data-filter="security">Security</button>
             <button class="chip" data-filter="ui">UI/UX</button>
           </div>
         </div>
 
         <div id="project-grid" class="project-grid" aria-live="polite">
-          <article class="project-card" data-tags="frontend,ui" tabindex="0">
+          <article class="project-card" data-tags="frontend,backend" tabindex="0">
             <img data-src="assets/bank_management_system_1.png" alt="Bank management System" class="lazy">
             <div class="project-body">
               <h3>Bank management System using Java (AWT)</h3>
@@ -289,7 +338,7 @@
             </div>
           </article>
 
-          <article class="project-card" data-tags="frontend,ui" tabindex="0">
+          <article class="project-card" data-tags="backend,python" tabindex="0">
             <img data-src="assets/live_score.png" alt="Live Cricket Score" class="lazy">
             <div class="project-body">
               <h3>Live cricket Score Card Based on Official Cricbuzz report</h3>
@@ -306,7 +355,7 @@
             </div>
           </article>
 
-          <article class="project-card" data-tags="frontend,ui" tabindex="0">
+          <article class="project-card" data-tags="ai,python" tabindex="0">
             <img data-src="assets/volume_control.png" alt="Volume Control System" class="lazy">
             <div class="project-body">
               <h3>Volume Control System Using Hand Gesture Recognition</h3>
@@ -341,7 +390,58 @@
               </div>
             </div>
           </article>
-          <article class="project-card" data-tags="Full-stack,ai,python,docker" tabindex="0">
+
+          <article class="project-card" data-tags="backend,ai,python" tabindex="0">
+            <img data-src="assets/RAG_model.png" alt="RAG customer support assistant running in VS Code" class="lazy">
+            <div class="project-body">
+              <h3>RAG Customer Support Assistant</h3>
+              <p class="muted">A retrieval-augmented customer support assistant that answers user questions from a
+                local knowledge base with environment validation and an interactive CLI workflow.</p>
+              <div class="project-meta">
+                <div class="tags"><span>Python</span><span>RAG</span><span>ChromaDB</span><span>Groq API</span></div>
+                <div class="project-actions">
+                  <button class="btn btn-sm js-open-modal" data-project="RAG Customer Support Assistant">Details</button>
+                  <a class="btn btn-sm btn-ghost" href="https://github.com/krishnayaswanthp-netizen/RAG_System_for_Food_Application" target="_blank" rel="noopener">Code</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="frontend,backend,security,ui" tabindex="0">
+            <img data-src="assets/paque.png" alt="Opaque Zero-Trust Sanitizer dashboard" class="lazy">
+            <div class="project-body">
+              <h3>Opaque Zero-Trust Sanitizer</h3>
+              <p class="muted">A secure file sanitization dashboard for scanning uploaded files, reviewing metadata
+                exposure, and delivering verified clean copies through a focused workflow.</p>
+              <div class="project-meta">
+                <div class="tags"><span>Flask</span><span>Security</span><span>Dashboard</span><span>UX</span></div>
+                <div class="project-actions">
+                  <button class="btn btn-sm js-open-modal" data-project="Opaque Zero-Trust Sanitizer">Details</button>
+                  <a class="btn btn-sm btn-ghost" href="https://github.com/krishnayaswanthp-netizen/opaque" target="_blank" rel="noopener">Code</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="frontend,backend,ai,security" tabindex="0">
+            <img data-src="assets/civic-connect.png" alt="CivicConnect citizen issue reporting platform preview"
+              class="lazy">
+            <div class="project-body">
+              <h3>CivicConnect</h3>
+              <p class="muted">A citizen issue reporting platform with a FastAPI microservices backend, PostgreSQL
+                storage, Nginx gateway routing, JWT auth, AI urgency labeling, and critical-alert notifications.</p>
+              <div class="project-meta">
+                <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>Nginx</span>
+                </div>
+                <div class="project-actions">
+                  <button class="btn btn-sm js-open-modal" data-project="CivicConnect">Details</button>
+                  <a class="btn btn-sm btn-ghost" href="https://github.com/krishnayaswanthp-netizen/CivicConnect" target="_blank" rel="noopener">Code</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="backend,ai,python,docker" tabindex="0">
             <img data-src="assets/ray_ai.png" alt="Haven - Mental Health Support System" class="lazy">
             <div class="project-body">
               <h3>Haven - Mental Health Support System</h3>
@@ -407,15 +507,13 @@
               </svg>
             </div>
             <div class="blog-content">
-              <h3>I'm fascinated by the new "Neo" humanoid robot. While the hardware is impressive</h3>
-              <p class="muted"> what truly excites me is the "brain" powering it and the engineering challenges it
-                presents.
-                This isn't just about a single product; it's a real-world case study in applied AI</p>
+              <h3>Intoduction to Lang-Chain</h3>
+              <p class="muted">LangChain Deep Dive: Designing Modular LLM Applications</p>
               <div class="blog-meta">
-                <span class="date">November 4, 2025</span>
-                <span class="read-time">5 min read</span>
+                <span class="date">April 13, 2026</span>
+                <span class="read-time">25 min read</span>
               </div>
-              <a href="https://www.linkedin.com/posts/panchagnula-krishna-yaswanth-9b0413307_cse-robotics-ai-activity-7391388266501107712-hofc?utm_source=share&utm_medium=member_android&rcm=ACoAAE4xitQBIJtcsr-fgOxGjnswgzoK3dtdPwA"
+              <a href="https://medium.com/@krishnayaswanthp/langchain-deep-dive-designing-modular-llm-applications-060a595c1fab"
                 class="btn btn-sm btn-outline" aria-label="Read Getting Started with Java AWT for GUI Development">Read
                 Article</a>
             </div>
@@ -429,14 +527,14 @@
               </svg>
             </div>
             <div class="blog-content">
-              <h3>Is an AI qualified to be a government minister? Albania says yes.</h3>
-              <p class="muted">As a 3rd-year CSE student, I'm fascinated by the architecture behind their new AI
-                minister, "Della." Here's my technical take:</p>
+              <h3>Subject: The End of the "Reading Grind" 🎬</h3>
+              <p class="muted">Staring at a 50-page technical PDF at 2 AM is a cognitive bottleneck. Flat text forces our brains to do all the heavy lifting, leading to rapid fatigue.
+Google just flipped the script with NotebookLM’s Cinematic Video Overviews.</p>
               <div class="blog-meta">
-                <span class="date">November 1, 2025</span>
+                <span class="date">March 4, 2026</span>
                 <span class="read-time">8 min read</span>
               </div>
-              <a href="https://www.linkedin.com/posts/panchagnula-krishna-yaswanth-9b0413307_ai-govtech-artificialintelligence-activity-7389684551381471234-on8T?utm_source=share&utm_medium=member_android&rcm=ACoAAE4xitQBIJtcsr-fgOxGjnswgzoK3dtdPwA"
+              <a href="https://www.linkedin.com/posts/panchagnula-krishna-yaswanth-9b0413307_notebooklm-artificialintelligence-systemdesign-activity-7436404526427009024-7Ovq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE4xitQBIJtcsr-fgOxGjnswgzoK3dtdPwA"
                 class="btn btn-sm btn-outline"
                 aria-label="Read Building Real-time Applications with Python Web Scraping">Read Article</a>
             </div>
