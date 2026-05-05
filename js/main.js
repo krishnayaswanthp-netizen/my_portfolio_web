@@ -7,6 +7,7 @@ import { initPreloader, initTyping, initScrollReveal, initSmoothScroll, initLazy
 import { initCursor } from './modules/cursor.js';
 import { initHeroCanvas } from './modules/hero-canvas.js';
 import { initTilt } from './modules/tilt.js';
+import { initClickSpark } from './modules/click-spark.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     // Core UI
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initHeroCanvas();
     initTilt();
     initLazyLoading();
+    initClickSpark({ sparkColor: 'rgba(255, 255, 255, 0.8)', sparkCount: 8 });
 
     // Set year
     const yearEl = document.getElementById("year");
