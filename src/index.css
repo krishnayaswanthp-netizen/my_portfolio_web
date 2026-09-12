@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+@theme {
+  /* ─── Foundation — warm, tactile neutrals ─────────────────────────── */
+  --color-bone-50: #fbf9f4;
+  --color-bone-100: #f6f3ec;
+  --color-bone-200: #eee9de;
+  --color-bone-300: #e2dccd;
+  --color-bone-400: #cbc3ae;
+
+  /* ─── Ink — deep warm charcoal ────────────────────────────────────── */
+  --color-ink-950: #131211;
+  --color-ink-900: #1c1a18;
+  --color-ink-800: #2a2724;
+  --color-ink-700: #423e38;
+  --color-ink-600: #5c564e;
+  --color-ink-500: #7a7369;
+  --color-ink-400: #9a938a;
+
+  /* ─── Accents — rust (signal) + moss (support) ────────────────────── */
+  --color-rust-400: #d98468;
+  --color-rust-500: #c66b4c;
+  --color-rust-600: #a35436;
+  --color-moss-400: #9aa88a;
+  --color-moss-500: #7d8c6d;
+  --color-moss-600: #64745a;
+
+  --color-glass: rgb(24 22 20 / 0.72);
+
+  --font-serif: "Kaze Display", "Georgia", serif;
+  --font-sans: "Kaze Text", system-ui, -apple-system, sans-serif;
+  --font-mono: "Kaze Mono", "SFMono-Regular", "Menlo", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-drift: drift 7s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 2.8s ease-in-out infinite;
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1.5deg);
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+/* ─── Self-hosted fonts — three voices, unique identity ─────────────── */
+@font-face {
+  font-family: "Kaze Display";
+  src: url("/fonts/serif-display.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaze Display";
+  src: url("/fonts/serif-display-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaze Display";
+  src: url("/fonts/serif-display-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaze Text";
+  src: url("/fonts/sans-text.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaze Text";
+  src: url("/fonts/sans-text-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaze Mono";
+  src: url("/fonts/mono-technical.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaze Mono";
+  src: url("/fonts/mono-technical-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: auto; /* Lenis owns scrolling */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html.lenis-active {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-bone-100 text-ink-900 font-sans antialiased;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-rust-500);
+    color: var(--color-bone-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rust-600);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  section[id],
+  [data-nav-section] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+/* ─── Film grain — one texture for the whole site ───────────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Typographic utilities ─────────────────────────────────────────── */
+@utility display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+/* Drawn underline — the site's link language */
+@utility link-draw {
+  position: relative;
+}
+
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.link-draw:hover::after,
+.link-draw:focus-visible::after,
+a:hover > .link-draw::after,
+a:focus-visible > .link-draw::after {
+  transform: scaleX(1);
+}
+
+/* ─── JS reveal states (gsap animates to these; CSS keeps them sane) ── */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+}
+.reveal-line > span {
+  display: block;
+  transform: translateY(110%);
+}
+/* Hero owns its entrance via GSAP fromTo — content renders visibly by default.
+   (The global translateY(110%) above parses as pixel-y inside GSAP, which
+   breaks yPercent tweens and left hero text masked out.) */
+#top .reveal-line > span {
+  transform: none;
+}
+html.no-js .reveal-line > span,
+html.reduced-motion .reveal-line > span {
+  transform: none;
+}
+
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(28px);
+}
+html.no-js .reveal-fade,
+html.reduced-motion .reveal-fade {
+  opacity: 1;
+  transform: none;
+}
+
+html.no-js .reveal-clip,
+html.reduced-motion .reveal-clip {
+  clip-path: none;
+}
+
+.reveal-clip {
+  clip-path: inset(8% 4% 8% 4% round 14px);
+  transition:
+    clip-path 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo);
+}
+.reveal-clip.is-inview {
+  clip-path: inset(0 0 0 0 round 14px);
+}
+
+/* ─── Reduced motion — full fallback ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html.reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html.reduced-motion .reveal-fade,
+  html.reduced-motion .reveal-line > span {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
