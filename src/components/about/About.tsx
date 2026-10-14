@@ -1,106 +1,73 @@
-/** About — the human section. Portrait, statement, warmth. All facts real. */
-
-import { useRef } from "react";
 import { site } from "../../data/site";
-import { scrollToSection } from "../../lib/motion";
-import { useReveal } from "../../lib/hooks";
+import Icon from "../common/Icon";
 
 export default function About() {
-  const rootRef = useRef<HTMLElement>(null);
-  useReveal(rootRef);
-
   return (
     <section
-      ref={rootRef}
+      className="w-full bg-vanilla-cream py-24 px-6 md:px-10 border-b-[2.5px] border-warm-charcoal"
       id="about"
-      className="relative bg-bone-100"
-      aria-labelledby="about-title"
     >
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
-        <header className="mb-14 sm:mb-20">
-          <p className="reveal-fade mono-label mb-6 flex items-center gap-3 text-rust-600">
-            03 — About
-            <span className="inline-block h-px w-16 bg-rust-600/40" aria-hidden="true" />
-          </p>
-          <h2 id="about-title" className="display max-w-4xl text-5xl text-ink-950 sm:text-7xl">
-            <span className="reveal-line">
-              <span>The person behind</span>
-            </span>
-            <span className="reveal-line pl-[6vw]">
-              <span>
-                the systems<span className="text-rust-600">.</span>
-              </span>
-            </span>
-          </h2>
-        </header>
-
-        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Portrait — an editorial plate, not a headshot box */}
-          <figure className="lg:col-span-5">
-            <div className="reveal-clip relative overflow-hidden rounded-[20px]">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Left Polaroid Portrait */}
+        <div className="lg:col-span-5 flex flex-col items-center">
+          <div className="relative w-full max-w-sm bg-card-cream p-4 pb-6 rounded-2xl border-[2.5px] border-warm-charcoal shadow-[8px_8px_0px_#292820] rotate-[-2deg] transition-transform hover:rotate-0 duration-300">
+            <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-dim border-[1.5px] border-warm-charcoal">
               <img
+                alt="Krishna Yaswanth Panchagnula portrait"
+                className="w-full h-full object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-500"
                 src="/media/portrait.png"
-                alt="Portrait of Panchagnula Krishna Yaswanth"
-                width={720}
-                height={960}
                 loading="lazy"
-                decoding="async"
-                className="aspect-[3/4] w-full object-cover"
               />
             </div>
-            <figcaption className="mono-label mt-4 flex justify-between text-ink-400">
-              <span>Krishna Yaswanth</span>
-              <span>Hyderabad, 2026</span>
-            </figcaption>
-          </figure>
-
-          {/* Statement + bio */}
-          <div className="lg:col-span-7">
-            <p className="display text-balance text-3xl leading-snug text-ink-950 sm:text-4xl">
-              I'm Krishna Yaswanth Panchagnula — a Computer Science undergraduate who
-              builds{" "}
-              <em className="italic text-rust-600">real-world applications</em>: from a
-              Java bank management system to Python fraud-detection systems, agentic AI
-              products, and the interface engineering you're reading now.
-            </p>
-
-            <div className="reveal-fade mt-8 max-w-xl space-y-5 text-pretty text-base leading-relaxed text-ink-600 sm:text-lg">
-              <p>
-                The work runs full-stack, but the through-line is backend and system
-                thinking: services that stay testable, data that stays clean, and
-                interfaces that document what the system actually does. AI and
-                data-oriented projects — retrieval pipelines, extraction engines, agentic
-                workflows — sit at the center.
-              </p>
-              <p>
-                Everything here was built to work, not to demo. The four flagship systems
-                in{" "}
-                <button
-                  onClick={() => scrollToSection("work")}
-                  className="link-draw font-medium text-ink-950"
-                >
-                  01 / Work
-                </button>{" "}
-                carry their own records: what was built, how, and the evidence that it
-                exists.
-              </p>
+            <div className="mt-4 flex items-center justify-between">
+              <div>
+                <h4 className="font-headline font-bold text-sm uppercase">Krishna Yaswanth</h4>
+                <p className="font-mono text-xs text-warm-charcoal/70">Software Engineer</p>
+              </div>
+              <span className="font-mono text-xs bg-bright-lime px-2 py-0.5 rounded border border-warm-charcoal font-semibold">
+                2026
+              </span>
             </div>
-
-            {/* Meta band */}
-            <dl className="reveal-fade mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-ink-900/15 pt-8 sm:grid-cols-4">
-              {[
-                ["Location", "Hyderabad, Telangana, IN"],
-                ["Education", "CS undergraduate"],
-                ["Experience", "2+ years building"],
-                ["Status", site.status],
-              ].map(([label, value]) => (
-                <div key={label}>
-                  <dt className="mono-label mb-1.5 text-ink-400">{label}</dt>
-                  <dd className="text-sm font-medium text-ink-800">{value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
+        </div>
+
+        {/* Right Personal Ethos */}
+        <div className="lg:col-span-7 flex flex-col items-start">
+          <div className="inline-block bg-bright-lime text-warm-charcoal font-mono text-xs uppercase px-3 py-1 rounded-full border-[1.5px] border-warm-charcoal font-bold mb-3 shadow-[2px_2px_0px_#292820]">
+            Personal Engineering Ethos
+          </div>
+          <h2 className="font-headline text-3xl sm:text-4xl font-extrabold text-warm-charcoal uppercase tracking-tight mb-6">
+            Engineering with curiosity beneath the surface.
+          </h2>
+          <p className="font-body text-base text-warm-charcoal/80 leading-relaxed mb-4">
+            I'm interested in what happens beneath the interface: how systems connect, how data moves, and how software becomes genuinely useful. My core focus centers on scalable backends, retrieval-augmented intelligence, and high-integrity workflows.
+          </p>
+          <p className="font-body text-base text-warm-charcoal/80 leading-relaxed mb-6">
+            Beyond engineering architectures and coding models, I also enjoy exploring deep tech culture, listening to music, reading books, and watching great movies.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8 font-mono text-xs">
+            <div className="p-3 bg-card-cream rounded-xl border-[1.5px] border-warm-charcoal shadow-[2px_2px_0px_#292820]">
+              <span className="block font-bold text-electric-blue">LOCATION</span>
+              <span className="text-warm-charcoal/80">{site.location}</span>
+            </div>
+            <div className="p-3 bg-card-cream rounded-xl border-[1.5px] border-warm-charcoal shadow-[2px_2px_0px_#292820]">
+              <span className="block font-bold text-warm-charcoal">FOCUS</span>
+              <span className="text-warm-charcoal/80">Backend, AI, RAG</span>
+            </div>
+            <div className="p-3 bg-card-cream rounded-xl border-[1.5px] border-warm-charcoal shadow-[2px_2px_0px_#292820]">
+              <span className="block font-bold text-tangerine">STATUS</span>
+              <span className="text-warm-charcoal/80">Open to Opportunities</span>
+            </div>
+          </div>
+
+          <a
+            className="inline-flex items-center gap-2 bg-warm-charcoal text-white font-headline text-sm font-bold uppercase px-6 py-3 rounded-full border-[2px] border-warm-charcoal shadow-[4px_4px_0px_#B9F264] hover:bg-electric-blue transition-colors cursor-pointer"
+            href={`mailto:${site.email}`}
+          >
+            <span>Send Me an Email</span>
+            <Icon name="arrow_forward" size={18} />
+          </a>
         </div>
       </div>
     </section>

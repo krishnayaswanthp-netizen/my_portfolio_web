@@ -1,94 +1,78 @@
-/** Writing — an editorial reading section. Three real pieces, real links. */
-
-import { useRef } from "react";
 import { articles } from "../../data/writing";
-import { useReveal } from "../../lib/hooks";
+import Icon from "../common/Icon";
 
 export default function Writing() {
-  const rootRef = useRef<HTMLElement>(null);
-  useReveal(rootRef);
+  const badgeMap: Record<string, { bg: string; text: string; type: string }> = {
+    Medium: { bg: "bg-electric-blue", text: "text-white", type: "TECH GUIDE" },
+    LinkedIn: { bg: "bg-bright-lime", text: "text-warm-charcoal", type: "ESSAY" },
+  };
 
   return (
     <section
-      ref={rootRef}
+      className="w-full bg-surface-dim py-24 px-6 md:px-10 border-b-[2.5px] border-warm-charcoal"
       id="writing"
-      className="relative bg-bone-200"
-      aria-labelledby="writing-title"
     >
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
-        <header className="mb-14 sm:mb-20">
-          <p className="reveal-fade mono-label mb-6 flex items-center gap-3 text-rust-600">
-            04 — Writing
-            <span className="inline-block h-px w-16 bg-rust-600/40" aria-hidden="true" />
-          </p>
-          <h2 id="writing-title" className="display max-w-4xl text-5xl text-ink-950 sm:text-7xl">
-            <span className="reveal-line">
-              <span>What gets written</span>
-            </span>
-            <span className="reveal-line pl-[6vw]">
-              <span>
-                down<span className="text-rust-600">.</span>
-              </span>
-            </span>
+      <div className="max-w-6xl mx-auto flex flex-col items-center">
+        {/* Header */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <span className="font-mono text-xs font-bold uppercase bg-card-cream px-3 py-1 rounded-full border border-warm-charcoal mb-3 shadow-[2px_2px_0px_#292820]">
+            Published Insights
+          </span>
+          <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-warm-charcoal uppercase tracking-tight">
+            Writing &amp; Technical Notes
           </h2>
-        </header>
+          <p className="font-body text-base text-warm-charcoal/80 max-w-xl mt-3 leading-relaxed">
+            Notes and breakdowns on retrieval-augmented systems, cognitive AI tooling, and cloud infrastructure failure cascading.
+          </p>
+        </div>
 
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          {/* Intro column */}
-          <div className="reveal-fade lg:col-span-4">
-            <p className="text-pretty text-lg leading-relaxed text-ink-600">
-              What building systems teaches, written down while it's still fresh — a
-              LangChain engineering guide and two pieces on AI tooling and
-              infrastructure.
-            </p>
-            <a
-              href="https://www.linkedin.com/in/panchagnula-krishna-yaswanth-9b0413307/recent-activity/all/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-draw mono-label mt-8 inline-block text-ink-900"
-            >
-              Full activity feed ↗
-            </a>
-          </div>
+        {/* 3 Articles Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+          {articles.map((article, idx) => {
+            const isLast = idx === articles.length - 1;
+            const badge = isLast
+              ? { bg: "bg-tangerine", text: "text-warm-charcoal", type: "POST-MORTEM" }
+              : badgeMap[article.publication] || {
+                  bg: "bg-card-cream",
+                  text: "text-warm-charcoal",
+                  type: "ARTICLE",
+                };
 
-          {/* Article list — asymmetric, editorial */}
-          <ol className="lg:col-span-8">
-            {articles.map((article, i) => (
-              <li key={article.index}>
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group grid gap-4 border-t border-ink-900/15 py-8 transition-colors last:border-b hover:bg-bone-50/60 sm:py-10 ${
-                    i % 2 === 1 ? "sm:pl-12" : ""
-                  }`}
-                  aria-label={`Read: ${article.title} — on ${article.publication}, ${article.date}`}
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span className="mono-label text-rust-600">{article.index}</span>
-                    <span className="mono-label text-ink-400">
-                      {article.publication} · {article.date}
+            return (
+              <a
+                key={article.title}
+                className="group bg-card-cream p-6 rounded-2xl border-[2.5px] border-warm-charcoal shadow-[5px_5px_0px_#292820] flex flex-col justify-between hover:-translate-y-1 transition-transform cursor-pointer"
+                href={article.url}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3 font-mono text-xs">
+                    <span
+                      className={`${badge.bg} ${badge.text} px-2.5 py-0.5 rounded border border-warm-charcoal font-semibold uppercase`}
+                    >
+                      {article.publication}
                     </span>
+                    <span className="text-warm-charcoal/60 uppercase">{badge.type}</span>
                   </div>
-                  <h3 className="display max-w-2xl text-balance text-2xl text-ink-950 transition-transform duration-300 group-hover:translate-x-1.5 sm:text-4xl">
+                  <h3 className="font-headline text-lg font-bold text-warm-charcoal group-hover:text-electric-blue transition-colors mb-2 leading-snug">
                     {article.title}
                   </h3>
-                  <p className="max-w-xl text-pretty text-sm leading-relaxed text-ink-500 sm:text-base">
+                  <p className="font-body text-xs text-warm-charcoal/75 leading-relaxed">
                     {article.excerpt}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="mono-label text-ink-400">{article.topic}</span>
-                    <span
-                      aria-hidden="true"
-                      className="text-ink-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-rust-600"
-                    >
-                      ↗
-                    </span>
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ol>
+                </div>
+                <div className="mt-6 pt-3 border-t border-warm-charcoal/15 flex items-center justify-between font-mono text-xs text-warm-charcoal font-bold">
+                  <span>Read Full Piece</span>
+                  <Icon
+                    name="arrow_outward"
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

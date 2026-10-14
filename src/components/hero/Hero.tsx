@@ -1,128 +1,156 @@
-/** Hero — the opening statement.
- *  Oversized editorial name over the SignalField. WHO → WHAT → proof → index.
- *  Entrance choreography: lines rise from masks, meta fades in waves.
- */
+import { useState } from "react";
+import { site } from "../../data/site";
+import Icon from "../common/Icon";
 
-import { useLayoutEffect, useRef } from "react";
-import SignalField from "../effects/SignalField";
-import { site, nav } from "../../data/site";
-import { gsap, MOTION, prefersReducedMotion, scrollToSection } from "../../lib/motion";
+const HERO_TILTS = [-4, -2, -1, 0, 1.5, 3, 5];
 
 export default function Hero() {
-  const rootRef = useRef<HTMLElement>(null);
+  const [polaroidTransform, setPolaroidTransform] = useState("rotate(-1deg) scale(1)");
+  const [badge1Style, setBadge1Style] = useState({ transform: "rotate(-7deg)" });
+  const [badge2Style, setBadge2Style] = useState({ transform: "rotate(8deg)" });
+  const [badge3Style, setBadge3Style] = useState({ transform: "rotate(4deg)" });
 
-  // Entrance enhancement: content is visible by default (CSS transform: none);
-  // fromTo applies the masked start state pre-paint and animates to rest.
-  useLayoutEffect(() => {
-    if (prefersReducedMotion()) return;
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.15 });
-      tl.fromTo(
-        ".hero-line > span",
-        { yPercent: 110 },
-        {
-          yPercent: 0,
-          duration: 1.25,
-          ease: MOTION.easeOut,
-          stagger: 0.12,
-        },
-      )
-        .fromTo(
-          ".hero-fade",
-          { opacity: 0, y: 22 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            ease: MOTION.easeOut,
-            stagger: 0.09,
-          },
-          "-=0.7",
-        )
-        .fromTo(
-          ".hero-rule",
-          { scaleX: 0 },
-          { scaleX: 1, duration: 1.1, ease: MOTION.easeInOut, transformOrigin: "left" },
-          "-=0.6",
-        );
-    }, rootRef);
-    return () => ctx.revert();
-  }, []);
+  const handleShuffle = () => {
+    const randTilt = HERO_TILTS[Math.floor(Math.random() * HERO_TILTS.length)];
+    setPolaroidTransform(`rotate(${randTilt}deg) scale(0.98)`);
+    setTimeout(() => {
+      setPolaroidTransform(`rotate(${randTilt}deg) scale(1)`);
+    }, 150);
 
-  const go = (id: string) => scrollToSection(id);
+    const calcTransform = () => {
+      const tilt = (Math.random() * 16 - 8).toFixed(1);
+      const xOff = (Math.random() * 12 - 6).toFixed(1);
+      const yOff = (Math.random() * 12 - 6).toFixed(1);
+      return `translate(${xOff}px, ${yOff}px) rotate(${tilt}deg)`;
+    };
+
+    setBadge1Style({ transform: calcTransform() });
+    setBadge2Style({ transform: calcTransform() });
+    setBadge3Style({ transform: calcTransform() });
+  };
 
   return (
-    <section
-      ref={rootRef}
-      id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden"
-      aria-label="Introduction"
-    >
-      <SignalField />
-
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center px-5 pb-24 pt-28 sm:px-8 lg:px-12">
-        {/* Meta row */}
-        <div className="hero-fade mb-8 flex items-center justify-between sm:mb-12">
-          <p className="mono-label text-ink-500">Portfolio — Vol. II</p>
-          <p className="mono-label hidden items-center gap-2 text-ink-500 sm:flex">
-            <span className="inline-block h-1.5 w-1.5 animate-pulse-soft rounded-full bg-moss-600" />
-            {site.status}
-          </p>
-        </div>
-
-        {/* Name — the composition's voice */}
-        <h1 className="display text-[clamp(3.4rem,13vw,12.5rem)] text-ink-950">
-          <span className="reveal-line hero-line">
-            <span>Krishna</span>
-          </span>
-          <span className="reveal-line hero-line pl-[8vw] sm:pl-[10vw]">
-            <span>
-              Yaswanth<span className="text-rust-600">.</span>
-            </span>
-          </span>
-        </h1>
-
-        <hr className="hero-rule my-8 border-ink-900/20 sm:my-10" />
-
-        {/* WHAT — the positioning */}
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <p className="hero-fade max-w-xl text-balance text-xl leading-relaxed text-ink-700 sm:text-2xl">
-            Software engineer building systems across{" "}
-            <em className="font-serif italic text-rust-600">agentic AI</em>,{" "}
-            <em className="font-serif italic text-rust-600">backends</em>, and{" "}
-            <em className="font-serif italic text-rust-600">interfaces</em> — designed
-            to work, not to demo.
-          </p>
-
-          <div className="hero-fade flex flex-col gap-3">
-            <p className="mono-label text-ink-500">{site.location}</p>
-            <p className="mono-label text-ink-500">04 featured systems · 08 indexed</p>
-          </div>
-        </div>
+    <section className="relative w-full pt-12 pb-20 md:py-24 bg-vanilla-cream overflow-hidden">
+      {/* Playful Tactile Curved Graphic Bands (Tangerine, Lime, Electric Blue, Coral Pink) */}
+      <div className="absolute -left-16 md:-left-8 top-6 pointer-events-none z-0 opacity-80 rotate-[-12deg] flex flex-col space-y-2">
+        <div className="w-40 md:w-64 h-5 bg-tangerine rounded-full shadow-[2px_2px_0px_#292820]"></div>
+        <div className="w-48 md:w-72 h-5 bg-bright-lime rounded-full shadow-[2px_2px_0px_#292820]"></div>
+        <div className="w-44 md:w-68 h-5 bg-coral-pink rounded-full shadow-[2px_2px_0px_#292820]"></div>
+        <div className="w-36 md:w-60 h-5 bg-electric-blue rounded-full shadow-[2px_2px_0px_#292820]"></div>
+      </div>
+      <div className="absolute -right-16 md:-right-8 top-12 pointer-events-none z-0 opacity-80 rotate-[14deg] flex flex-col space-y-2 items-end">
+        <div className="w-44 md:w-72 h-5 bg-coral-pink rounded-full shadow-[2px_2px_0px_#292820]"></div>
+        <div className="w-40 md:w-64 h-5 bg-bright-lime rounded-full shadow-[2px_2px_0px_#292820]"></div>
+        <div className="w-48 md:w-80 h-5 bg-tangerine rounded-full shadow-[2px_2px_0px_#292820]"></div>
+        <div className="w-32 md:w-56 h-5 bg-electric-blue rounded-full shadow-[2px_2px_0px_#292820]"></div>
       </div>
 
-      {/* Bottom index — the way in */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 pb-8 sm:px-8 lg:px-12">
-        <div className="hero-fade flex items-center justify-between border-t border-ink-900/15 pt-5">
-          <div className="flex gap-5 sm:gap-8">
-            {nav.slice(0, 4).map((item) => (
-              <button
-                key={item.id}
-                onClick={() => go(item.id)}
-                className="link-draw mono-label text-ink-500 transition-colors hover:text-ink-950"
-              >
-                <span className="mr-1.5 text-rust-600">{item.index}</span>
-                {item.label}
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={() => go("work")}
-            aria-label="Scroll to work"
-            className="mono-label text-ink-500 transition-colors hover:text-ink-950"
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 flex flex-col items-center text-center">
+        {/* Role & Status Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card-cream border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] mb-8 transform -rotate-1 hover:rotate-0 transition-transform">
+          <span className="w-2.5 h-2.5 rounded-full bg-bright-lime animate-pulse border border-warm-charcoal"></span>
+          <span className="font-mono text-xs text-warm-charcoal uppercase tracking-wider font-semibold">
+            Software Engineer // Systems • AI • Full-Stack
+          </span>
+        </div>
+
+        {/* Main Expressive Headline */}
+        <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold max-w-4xl tracking-tight leading-[1.15] text-warm-charcoal mb-6">
+          I'm Krishna Yaswanth — I build backend systems, AI engines, and complete web applications.
+        </h1>
+        <p className="font-body text-base md:text-lg text-warm-charcoal/80 max-w-2xl mb-8 leading-relaxed">
+          {site.bio}
+        </p>
+
+        {/* Interactive Actions Pill Group */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
+          <a
+            className="inline-flex items-center gap-2 bg-electric-blue hover:bg-warm-charcoal text-white font-headline text-sm md:text-base font-bold uppercase px-8 py-3.5 rounded-full border-[2.5px] border-warm-charcoal shadow-[5px_5px_0px_#292820] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            href="#work"
           >
-            ↓
-          </button>
+            <span>Explore My Work</span>
+            <Icon name="arrow_downward" size={18} />
+          </a>
+          <a
+            className="inline-flex items-center gap-2 bg-bright-lime hover:bg-card-cream text-warm-charcoal font-headline text-sm md:text-base font-bold uppercase px-8 py-3.5 rounded-full border-[2.5px] border-warm-charcoal shadow-[5px_5px_0px_#292820] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            href="#contact"
+          >
+            <span>Get in Touch</span>
+            <Icon name="mail" size={18} />
+          </a>
+        </div>
+
+        {/* Tactile Portrait Frame with Interactive Badges */}
+        <div className="relative w-full max-w-md mx-auto mt-2 mb-4">
+          {/* Floating Badge 1 */}
+          <div
+            id="hero-badge-1"
+            style={badge1Style}
+            className="absolute -top-6 -left-6 md:-left-12 z-20 bg-bright-lime text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300"
+          >
+            ⚡ BACKEND &amp; AI
+          </div>
+
+          {/* Floating Badge 2 */}
+          <div
+            id="hero-badge-2"
+            style={badge2Style}
+            className="absolute top-1/3 -right-6 md:-right-10 z-20 bg-tangerine text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300"
+          >
+            🛠️ FULL-STACK DEV
+          </div>
+
+          {/* Floating Badge 3 */}
+          <div
+            id="hero-badge-3"
+            style={badge3Style}
+            className="absolute -bottom-4 -left-4 z-20 bg-card-cream text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300"
+          >
+            📍 HYDERABAD / GLOBAL
+          </div>
+
+          {/* Polaroid Style Photo Container */}
+          <div
+            id="hero-polaroid-frame"
+            style={{ transform: polaroidTransform }}
+            className="relative bg-card-cream p-4 pb-6 rounded-2xl border-[2.5px] border-warm-charcoal shadow-[8px_8px_0px_#292820] transition-all duration-300"
+          >
+            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-dim border-[1.5px] border-warm-charcoal">
+              <img
+                alt="Krishna Yaswanth Panchagnula portrait"
+                className="w-full h-full object-cover object-top filter grayscale contrast-110 hover:contrast-125 transition-all duration-500"
+                src="/media/portrait.png"
+                loading="eager"
+              />
+              <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-warm-charcoal text-white px-2.5 py-1 rounded-full text-xs font-mono">
+                <span className="w-2 h-2 rounded-full bg-bright-lime animate-ping"></span>
+                <span>ONLINE // BUILDING</span>
+              </div>
+            </div>
+            <div className="mt-4 flex items-center justify-between px-2">
+              <span className="font-headline text-base uppercase tracking-tight text-warm-charcoal font-extrabold">
+                Krishna Yaswanth Panchagnula
+              </span>
+              <span className="font-mono text-xs text-warm-charcoal/70">ARCH // 2026</span>
+            </div>
+          </div>
+
+          {/* Authentic Tactile Shuffle Trigger Button */}
+          <div className="mt-8 flex justify-center">
+            <button
+              id="hero-shuffle-btn"
+              type="button"
+              onClick={handleShuffle}
+              className="group inline-flex items-center gap-2 bg-card-cream hover:bg-bright-lime text-warm-charcoal font-headline text-xs font-bold uppercase px-6 py-2.5 rounded-full border-[2px] border-warm-charcoal shadow-[4px_4px_0px_#292820] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#292820] transition-all cursor-pointer"
+            >
+              <Icon
+                name="sync"
+                size={18}
+                className="group-hover:rotate-180 transition-transform duration-500"
+              />
+              <span>Tilt Frame &amp; Badges</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>

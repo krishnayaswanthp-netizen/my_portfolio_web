@@ -1,156 +1,138 @@
-/** Navbar — minimal, transforming. Gains a hairline + frost after scrolling.
- *  Mobile: full-screen ink overlay with a staggered serif index.
- */
-
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import { site, nav } from "../../data/site";
-import { scrollToSection, prefersReducedMotion } from "../../lib/motion";
+import Icon from "../common/Icon";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const menuBtnRef = useRef<HTMLButtonElement>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("work");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Lock body scroll while the menu is open
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    let t = 0;
-    if (prefersReducedMotion()) {
-      closeRef.current?.focus();
-    } else {
-      t = window.setTimeout(() => closeRef.current?.focus(), 350);
-    }
-    return () => {
-      document.documentElement.style.overflow = prev;
-      if (t) window.clearTimeout(t);
-    };
-  }, [open]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        menuBtnRef.current?.focus();
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = nav.length - 1; i >= 0; i--) {
+        const el = document.getElementById(nav[i].id);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(nav[i].id);
+          break;
+        }
       }
     };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
-
-  const go = (id: string) => {
-    setOpen(false);
-    // Wait for the overlay to release the scroll lock before scrolling
-    window.setTimeout(() => scrollToSection(id), open ? 60 : 0);
-  };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "border-b border-ink-900/8 bg-glass backdrop-blur-xl"
-            : "border-b border-transparent bg-transparent"
-        }`}
-      >
-        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
-          <button
-            ref={menuBtnRef}
-            onClick={() => go("top")}
-            className="mono-label text-ink-900 transition-colors hover:text-rust-600"
-            aria-label="Back to top"
-          >
-            KY<span className="text-rust-600">©</span>2026
-          </button>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-vanilla-cream/90 backdrop-blur-md border-b-[2.5px] border-warm-charcoal">
+      <div className="h-20 max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between gap-4">
+        {/* Brand */}
+        <div className="flex items-center gap-3">
+          <a className="group flex items-center gap-2.5" href="#">
+            <span className="font-headline text-xl md:text-2xl font-extrabold uppercase tracking-tight text-warm-charcoal group-hover:text-electric-blue transition-colors">
+              Krishna Yaswanth
+            </span>
+            <span className="hidden sm:inline-block font-mono text-xs font-bold bg-bright-lime text-warm-charcoal px-2.5 py-0.5 border-[2px] border-warm-charcoal shadow-[2px_2px_0px_#292820] rounded-full rotate-[-2deg]">
+              // PORTFOLIO '26
+            </span>
+          </a>
+        </div>
 
-          <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-            {nav.map((item) => (
-              <button
+        {/* Desktop Navigation Pill Group */}
+        <nav
+          className="hidden lg:flex items-center gap-1.5 p-1 bg-surface-dim border-[2px] border-warm-charcoal rounded-full"
+          aria-label="Primary"
+        >
+          {nav.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
                 key={item.id}
-                onClick={() => go(item.id)}
-                className="link-draw mono-label text-ink-600 transition-colors hover:text-ink-900"
+                href={`#${item.id}`}
+                className={`font-headline font-semibold text-sm px-4 py-1.5 rounded-full transition-all ${
+                  isActive
+                    ? "bg-electric-blue text-white shadow-[2px_2px_0px_#292820]"
+                    : "text-warm-charcoal/80 hover:text-warm-charcoal hover:bg-card-cream"
+                }`}
               >
                 {item.label}
-              </button>
-            ))}
-            <a
-              href={site.resume}
-              download
-              className="mono-label rounded-full border border-ink-900/25 px-4 py-2 transition-colors hover:border-ink-900 hover:bg-ink-900 hover:text-bone-50"
-            >
-              Resume ↓
-            </a>
-          </nav>
-
-          <button
-            className="mono-label flex items-center gap-2 rounded-full border border-ink-900/25 px-4 py-2 md:hidden"
-            onClick={() => setOpen(true)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-          >
-            Menu <span aria-hidden="true">＋</span>
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile full-screen index */}
-      <div
-        id="mobile-menu"
-        ref={panelRef}
-        className={`fixed inset-0 z-[60] flex flex-col bg-ink-950 text-bone-100 transition-all duration-500 md:hidden ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site index"
-        inert={!open ? true : undefined}
-      >
-        <div className="flex h-16 items-center justify-between px-5">
-          <span className="mono-label text-bone-100/60">Index</span>
-          <button
-            ref={closeRef}
-            onClick={() => setOpen(false)}
-            className="mono-label rounded-full border border-bone-100/25 px-4 py-2"
-            aria-label="Close menu"
-          >
-            Close ×
-          </button>
-        </div>
-        <nav className="flex flex-1 flex-col justify-center gap-2 px-6" aria-label="Mobile">
-          {nav.map((item, i) => (
-            <button
-              key={item.id}
-              onClick={() => go(item.id)}
-              className={`group flex items-baseline gap-4 py-3 text-left transition-all duration-500 ${
-                open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-              }`}
-              style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
-            >
-              <span className="mono-label text-rust-400">{item.index}</span>
-              <span className="display text-5xl text-bone-50 transition-colors group-hover:text-rust-400 sm:text-6xl">
-                {item.label}
-              </span>
-            </button>
-          ))}
+              </a>
+            );
+          })}
         </nav>
-        <div className="flex items-center justify-between px-6 pb-8">
-          <a href={site.resume} download className="mono-label text-bone-100/70">
-            Resume ↓
+
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+          <a
+            className="inline-flex items-center justify-center font-headline font-bold text-xs md:text-sm uppercase bg-bright-lime text-warm-charcoal px-4 md:px-5 py-2.5 rounded-full border-[2.5px] border-warm-charcoal shadow-[3px_3px_0px_#292820] hover:shadow-[5px_5px_0px_#292820] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            href="#contact"
+          >
+            Get In Touch
           </a>
-          <span className="mono-label text-bone-100/40">{site.locationShort}</span>
+          <a
+            className="hidden sm:inline-flex items-center justify-center font-mono text-xs font-bold uppercase bg-card-cream text-warm-charcoal px-3.5 py-2 rounded-full border-[2px] border-warm-charcoal shadow-[2px_2px_0px_#292820] hover:bg-tangerine transition-colors"
+            href={site.github}
+            rel="noreferrer"
+            target="_blank"
+          >
+            GitHub ↗
+          </a>
+          {/* Gated at xl: the header row is already tight once the desktop nav
+              appears at lg, so this pill only renders where it fits on screen. */}
+          <a
+            className="hidden xl:inline-flex items-center justify-center font-mono text-xs font-bold uppercase bg-card-cream text-warm-charcoal px-3.5 py-2 rounded-full border-[2px] border-warm-charcoal shadow-[2px_2px_0px_#292820] hover:bg-bright-lime transition-colors"
+            href={site.resume}
+            rel="noreferrer"
+            target="_blank"
+          >
+            Resume ↗
+          </a>
+          {/* Mobile Menu Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="inline-flex lg:hidden p-2 rounded-xl border-[2px] border-warm-charcoal bg-card-cream shadow-[2px_2px_0px_#292820] cursor-pointer text-warm-charcoal"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <Icon
+              name={mobileMenuOpen ? "close" : "menu"}
+              size={24}
+              label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            />
+          </button>
         </div>
       </div>
-    </>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t-[2px] border-warm-charcoal bg-vanilla-cream px-6 py-6 flex flex-col gap-3 shadow-lg animate-fade-in">
+          {nav.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setMobileMenuOpen(false)}
+              className="font-headline font-bold text-base uppercase py-2 px-4 rounded-xl border-[1.5px] border-warm-charcoal bg-card-cream shadow-[2px_2px_0px_#292820] text-warm-charcoal hover:bg-bright-lime transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-xs font-bold uppercase py-2.5 px-4 rounded-xl border-[1.5px] border-warm-charcoal bg-surface-dim text-warm-charcoal text-center"
+          >
+            GitHub ↗
+          </a>
+          <a
+            href={site.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-xs font-bold uppercase py-2.5 px-4 rounded-xl border-[1.5px] border-warm-charcoal bg-card-cream text-warm-charcoal text-center"
+          >
+            Resume ↗
+          </a>
+        </div>
+      )}
+    </header>
   );
 }

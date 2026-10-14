@@ -1,92 +1,90 @@
-/** Footer — the colophon. Mirrors the sitemap, credits the system. */
-
-import { useEffect, useState } from "react";
-import { site, nav } from "../../data/site";
-import { scrollToSection } from "../../lib/motion";
+import { useState, useEffect } from "react";
+import { site } from "../../data/site";
+import Icon from "../common/Icon";
 
 export default function Footer() {
   const [year, setYear] = useState(2026);
   useEffect(() => setYear(new Date().getFullYear()), []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="border-t border-bone-100/10 bg-ink-950 text-bone-100" role="contentinfo">
-      <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-12">
-        <div className="grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-6">
-            <p className="mono-label text-bone-100/40">Colophon</p>
-            <p className="display mt-4 text-2xl text-bone-50 sm:text-3xl">
-              Designed &amp; built by Krishna Yaswanth.
-            </p>
-            <p className="mono-label mt-4 text-bone-100/40">
-              React · TypeScript · Tailwind · GSAP · Lenis
+    <footer className="w-full bg-surface-dim border-t-[2.5px] border-warm-charcoal">
+      {/* Tactile Color Strip Accents (Tangerine, Lime, Coral Pink, Electric Blue) */}
+      <div className="w-full flex flex-col">
+        <div className="h-2.5 w-full bg-tangerine border-b border-warm-charcoal"></div>
+        <div className="h-2.5 w-full bg-bright-lime border-b border-warm-charcoal"></div>
+        <div className="h-2.5 w-full bg-coral-pink border-b border-warm-charcoal"></div>
+        <div className="h-2.5 w-full bg-electric-blue border-b-[2px] border-warm-charcoal"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Brand & Subtitle */}
+          <div className="md:col-span-6 flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+              <span className="font-headline text-xl md:text-2xl font-extrabold text-warm-charcoal uppercase">
+                Krishna Yaswanth
+              </span>
+              <span className="font-mono text-xs bg-electric-blue text-white px-2.5 py-0.5 rounded-full border border-warm-charcoal">
+                ENGINEER
+              </span>
+            </div>
+            <p className="font-body text-xs md:text-sm text-warm-charcoal/75 max-w-md">
+              Backend systems, AI retrieval pipelines, and robust full-stack applications built with precision and craft.
             </p>
           </div>
 
-          <nav className="md:col-span-3" aria-label="Footer">
-            <p className="mono-label mb-4 text-bone-100/40">Index</p>
-            <ul className="space-y-2.5">
-              {nav.map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => scrollToSection(item.id)}
-                    className="link-draw text-sm text-bone-100/70 transition-colors hover:text-bone-50"
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="md:col-span-3">
-            <p className="mono-label mb-4 text-bone-100/40">Elsewhere</p>
-            <ul className="space-y-2.5">
-              <li>
-                <a
-                  href={site.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-draw text-sm text-bone-100/70 transition-colors hover:text-bone-50"
-                >
-                  GitHub ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-draw text-sm text-bone-100/70 transition-colors hover:text-bone-50"
-                >
-                  LinkedIn ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="link-draw text-sm text-bone-100/70 transition-colors hover:text-bone-50"
-                >
-                  Email
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.resume}
-                  download
-                  className="link-draw text-sm text-bone-100/70 transition-colors hover:text-bone-50"
-                >
-                  Resume ↓
-                </a>
-              </li>
-            </ul>
+          {/* Social Pills */}
+          <div className="md:col-span-3 flex items-center gap-2 flex-wrap">
+            <a
+              className="font-mono text-xs font-bold text-warm-charcoal px-3 py-1 bg-card-cream border-[1.5px] border-warm-charcoal rounded-full shadow-[2px_2px_0px_#292820] hover:bg-bright-lime transition-colors"
+              href={site.github}
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+            <a
+              className="font-mono text-xs font-bold text-warm-charcoal px-3 py-1 bg-card-cream border-[1.5px] border-warm-charcoal rounded-full shadow-[2px_2px_0px_#292820] hover:bg-bright-lime transition-colors"
+              href={site.linkedin}
+              rel="noreferrer"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+            <a
+              className="font-mono text-xs font-bold text-warm-charcoal px-3 py-1 bg-card-cream border-[1.5px] border-warm-charcoal rounded-full shadow-[2px_2px_0px_#292820] hover:bg-bright-lime transition-colors"
+              href={`mailto:${site.email}`}
+            >
+              Email
+            </a>
+            <a
+              className="font-mono text-xs font-bold text-warm-charcoal px-3 py-1 bg-card-cream border-[1.5px] border-warm-charcoal rounded-full shadow-[2px_2px_0px_#292820] hover:bg-bright-lime transition-colors"
+              href={site.portfolio}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Netlify ↗
+            </a>
           </div>
-        </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-bone-100/10 pt-6">
-          <span className="mono-label text-bone-100/35">
-            © {year} {site.name}
-          </span>
-          <span className="mono-label text-bone-100/35">{site.locationShort} — {site.status}</span>
+          {/* Back to Top & Copyright */}
+          <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between gap-3">
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase bg-card-cream text-warm-charcoal px-4 py-2 rounded-full border-[2px] border-warm-charcoal shadow-[2px_2px_0px_#292820] hover:bg-bright-lime transition-colors cursor-pointer"
+            >
+              <Icon name="arrow_upward" size={16} />
+              Back to Top
+            </button>
+            <p className="font-mono text-[11px] text-warm-charcoal/70 md:text-right">
+              © {year} {site.name}. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

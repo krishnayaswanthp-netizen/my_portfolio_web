@@ -1,7 +1,34 @@
+# Dependencies
 node_modules/
-dist/
-.env
 
-# Local AI/development skills — never publish
+# Generated production build
+dist/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local AI skills and agent configuration
 .skills/
 .claude/
+.freebuff/
+
+# Local browser audit profiles
+.chrome-audit-profile*/
+.chrome-hero-profile*/
+.chrome-visual-profile*/
+
+# Temporary preview logs
+.preview.log
+.preview.err.log
+
+# Local reference exports
+stitch-reference/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+# Optional: local editor configuration
+.vscode/
