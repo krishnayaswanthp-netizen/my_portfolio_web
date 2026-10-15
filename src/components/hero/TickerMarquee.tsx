@@ -7,14 +7,14 @@
 
 export default function TickerMarquee() {
   const items = [
-    "Krishna Yaswanth — The Archive",
+    "Krishna Yaswanth: Portfolio Archive",
     "Backend systems",
     "AI & RAG engines",
     "Full-stack applications",
     "Evidence, not promises",
     "Works · Approach · Capabilities",
     "About · Writing · Milestones",
-    "Contact — the archive is open",
+    "Contact: Open for engineering opportunities",
   ];
 
   return (

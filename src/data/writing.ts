@@ -15,7 +15,7 @@ export const articles: Article[] = [
     index: "001",
     title: "LangChain Deep Dive: Designing Modular LLM Applications",
     excerpt:
-      "A modular approach to LLM application design — chains, agents, and retrieval wired as composable parts rather than one monolithic prompt.",
+      "A modular approach to LLM application design, wiring chains, agents, and retrieval as composable parts rather than one monolithic prompt.",
     topic: "AI / LLM Engineering",
     publication: "Medium",
     date: "Apr 2026",
@@ -35,7 +35,7 @@ export const articles: Article[] = [
     index: "003",
     title: "The Ripple Effect of DNS: Analyzing the AWS Outage",
     excerpt:
-      "One DNS failure in US-East-1 rippled into Snapchat, Fortnite, and Reddit — a close reading of how the outage spread.",
+      "How one DNS failure in US-East-1 cascaded across Snapchat, Fortnite, and Reddit, with an analysis of how the outage spread.",
     topic: "Infrastructure / Networking",
     publication: "LinkedIn",
     date: "Oct 2025",

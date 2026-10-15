@@ -68,7 +68,7 @@ export default function SystemMap() {
                               ? "bg-surface-dim/40 text-warm-charcoal/35 border-warm-charcoal/20"
                               : "bg-surface-dim text-warm-charcoal border-warm-charcoal hover:bg-bright-lime"
                       }`}
-                      aria-label={`${node.name} — view details`}
+                      aria-label={`${node.name}: view details`}
                     >
                       {node.name}
                     </button>

@@ -56,7 +56,7 @@ export default function Hero() {
 
         {/* Main Expressive Headline */}
         <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold max-w-4xl tracking-tight leading-[1.15] text-warm-charcoal mb-6">
-          I'm Krishna Yaswanth — I build backend systems, AI engines, and complete web applications.
+          I'm Krishna Yaswanth. I build backend systems, AI engines, and complete web applications.
         </h1>
         <p className="font-body text-base md:text-lg text-warm-charcoal/80 max-w-2xl mb-8 leading-relaxed">
           {site.bio}

@@ -80,7 +80,7 @@ export const domains: TechDomain[] = [
     label: "Frontend & Interfaces",
     index: "02",
     focus:
-      "Responsive, authored interfaces — dashboard UX, accessibility, and restrained motion.",
+      "Responsive, accessible interfaces with focused dashboard UX and smooth motion.",
     nodes: [
       {
         name: "React",
@@ -212,7 +212,7 @@ export const domains: TechDomain[] = [
     label: "Data & Storage",
     index: "04",
     focus:
-      "Relational schema work and vector storage — the persistence layer under the AI systems.",
+      "Relational schema design and vector storage powering the data layer for AI applications.",
     nodes: [
       {
         name: "PostgreSQL",
@@ -257,7 +257,7 @@ export const domains: TechDomain[] = [
     label: "Infrastructure",
     index: "05",
     focus:
-      "Containerized delivery behind an Nginx gateway — compose files, routing, and environment config.",
+      "Containerized deployments behind an Nginx gateway, managing compose configurations, routing, and environments.",
     nodes: [
       {
         name: "Docker",

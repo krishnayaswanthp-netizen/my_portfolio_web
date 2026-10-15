@@ -25,7 +25,7 @@ export default function Achievements() {
                 Sankalp Hackathon // Stegx
               </h3>
               <p className="font-body text-sm text-warm-charcoal/80 leading-relaxed">
-                Awarded runner-up honors for building <strong>Stegx</strong>, an advanced cybersecurity steganography and defense utility focused on encrypted metadata detection and evasion.
+                Awarded runner-up for building <strong>Stegx</strong>, a cybersecurity tool focused on detecting encrypted metadata and hidden payloads.
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-warm-charcoal/15 font-mono text-xs text-warm-charcoal/70 flex items-center justify-between">
@@ -47,7 +47,7 @@ export default function Achievements() {
                 WiseIn UI/UX Hackathon
               </h3>
               <p className="font-body text-sm text-warm-charcoal/80 leading-relaxed">
-                Secured runner-up standing by designing and prototyping an accessible, high-retention interface focused on frictionless workflow navigation and system feedback.
+                Secured runner-up for designing and prototyping an intuitive interface with clear navigation and responsive system feedback.
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-warm-charcoal/15 font-mono text-xs text-warm-charcoal/70 flex items-center justify-between">

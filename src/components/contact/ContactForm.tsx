@@ -64,7 +64,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate className="rounded-[20px] border border-bone-100/12 bg-ink-900/60 p-6 backdrop-blur-sm sm:p-8">
-      <p className="mono-label mb-6 text-bone-100/50">Or write here —</p>
+      <p className="mono-label mb-6 text-bone-100/50">Or write here:</p>
 
       <div className="space-y-5">
         <div>
@@ -145,9 +145,9 @@ export default function ContactForm() {
       </button>
 
       <p role="status" aria-live="polite" className="mono-label mt-4 min-h-4 text-center">
-        {status === "sent" && <span className="text-moss-400">Received — I will reply by email.</span>}
+        {status === "sent" && <span className="text-moss-400">Received. I will reply by email.</span>}
         {status === "failed" && (
-          <span className="text-rust-400">Delivery failed — email me directly instead.</span>
+          <span className="text-rust-400">Delivery failed. Please email me directly instead.</span>
         )}
       </p>
     </form>

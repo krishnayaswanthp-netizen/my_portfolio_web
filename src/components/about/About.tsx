@@ -40,10 +40,10 @@ export default function About() {
             Engineering with curiosity beneath the surface.
           </h2>
           <p className="font-body text-base text-warm-charcoal/80 leading-relaxed mb-4">
-            I'm interested in what happens beneath the interface: how systems connect, how data moves, and how software becomes genuinely useful. My core focus centers on scalable backends, retrieval-augmented intelligence, and high-integrity workflows.
+            I'm interested in what happens beneath the interface: how systems connect, how data moves, and how software becomes genuinely useful. My core focus centers on scalable backend services, retrieval-augmented generation (RAG), and reliable data pipelines.
           </p>
           <p className="font-body text-base text-warm-charcoal/80 leading-relaxed mb-6">
-            Beyond engineering architectures and coding models, I also enjoy exploring deep tech culture, listening to music, reading books, and watching great movies.
+            Outside of system design and software development, I enjoy exploring tech culture, listening to music, reading, and watching films.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8 font-mono text-xs">

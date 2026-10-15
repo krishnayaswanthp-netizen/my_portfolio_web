@@ -22,7 +22,7 @@ export default function Writing() {
             Writing &amp; Technical Notes
           </h2>
           <p className="font-body text-base text-warm-charcoal/80 max-w-xl mt-3 leading-relaxed">
-            Notes and breakdowns on retrieval-augmented systems, cognitive AI tooling, and cloud infrastructure failure cascading.
+            Notes and breakdowns on retrieval-augmented generation, AI developer tools, and cloud infrastructure failures.
           </p>
         </div>
 
