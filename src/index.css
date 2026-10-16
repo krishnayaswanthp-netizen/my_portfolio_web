@@ -138,6 +138,64 @@
   vertical-align: middle;
 }
 
+/* ─── Floating Sticker Animations ─────────────────────────────────── */
+@keyframes sticker-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes sticker-float-alt {
+  0%, 100% {
+    transform: translateY(0px) rotate(1.5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+.sticker-float {
+  animation: sticker-float 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.sticker-float-alt {
+  animation: sticker-float-alt 6.5s ease-in-out infinite -2s;
+  will-change: transform;
+}
+
+/* Sticker die-cut drop shadow to feel like a real elevated vinyl sticker */
+.sticker-shadow {
+  filter: drop-shadow(4px 5px 0px #292820) drop-shadow(0 10px 20px rgba(41, 40, 32, 0.12));
+}
+
+.sticker-shadow-lg {
+  filter: drop-shadow(6px 8px 0px #292820) drop-shadow(0 14px 28px rgba(41, 40, 32, 0.15));
+}
+
+@media (max-width: 640px) {
+  @keyframes sticker-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(-0.5deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(0.5deg);
+    }
+  }
+
+  @keyframes sticker-float-alt {
+    0%, 100% {
+      transform: translateY(0px) rotate(0.5deg);
+    }
+    50% {
+      transform: translateY(-4px) rotate(-0.5deg);
+    }
+  }
+}
+
 /* ─── Reduced Motion Support ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -145,5 +203,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .sticker-float,
+  .sticker-float-alt {
+    animation: none !important;
+    will-change: auto;
+    transform: none !important;
   }
 }

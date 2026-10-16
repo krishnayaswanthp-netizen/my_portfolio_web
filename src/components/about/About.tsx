@@ -8,24 +8,34 @@ export default function About() {
       id="about"
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left Polaroid Portrait */}
+        {/* Left Polaroid Portrait: Editorial Scrapbook Frame */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="relative w-full max-w-sm bg-card-cream p-4 pb-6 rounded-2xl border-[2.5px] border-warm-charcoal shadow-[8px_8px_0px_#292820] rotate-[-2deg] transition-transform hover:rotate-0 duration-300">
-            <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-dim border-[1.5px] border-warm-charcoal">
-              <img
-                alt="Krishna Yaswanth Panchagnula portrait"
-                className="w-full h-full object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-500"
-                src="/media/portrait.png"
-                loading="lazy"
-              />
+          <div className="relative w-full max-w-sm bg-card-cream p-4 pb-6 rounded-2xl border-[2.5px] border-warm-charcoal shadow-[8px_8px_0px_#292820] rotate-[-2deg] transition-all hover:rotate-0 hover:shadow-[10px_10px_0px_#292820] duration-300 group">
+            {/* Playful Scrapbook Tape Element */}
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-bright-lime/90 border-[1.5px] border-warm-charcoal rotate-[-1.5deg] shadow-[1px_1px_0px_#292820] z-20 pointer-events-none rounded-xs flex items-center justify-center font-mono text-[9px] uppercase tracking-wider font-bold text-warm-charcoal">
+              MEMO // 2026
             </div>
-            <div className="mt-4 flex items-center justify-between">
+
+            <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-dim border-[1.5px] border-warm-charcoal relative">
+              <img
+                alt="Krishna Yaswanth Panchagnula seated outdoors"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                src="/images/krishna-seated-photo.png"
+                loading="lazy"
+                width={384}
+                height={480}
+              />
+              <div className="absolute bottom-2.5 left-2.5 bg-warm-charcoal/90 text-white font-mono text-[10px] px-2.5 py-0.5 rounded border border-white/20 backdrop-blur-xs">
+                HYDERABAD // NIGHT
+              </div>
+            </div>
+            <div className="mt-4 flex items-center justify-between px-1">
               <div>
-                <h4 className="font-headline font-bold text-sm uppercase">Krishna Yaswanth</h4>
+                <h4 className="font-headline font-bold text-sm uppercase text-warm-charcoal">Krishna Yaswanth</h4>
                 <p className="font-mono text-xs text-warm-charcoal/70">Software Engineer</p>
               </div>
-              <span className="font-mono text-xs bg-bright-lime px-2 py-0.5 rounded border border-warm-charcoal font-semibold">
-                2026
+              <span className="font-mono text-xs bg-bright-lime text-warm-charcoal px-2 py-0.5 rounded border border-warm-charcoal font-semibold">
+                ARCHIVE
               </span>
             </div>
           </div>

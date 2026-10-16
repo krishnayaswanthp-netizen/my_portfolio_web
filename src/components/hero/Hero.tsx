@@ -80,13 +80,13 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Tactile Portrait Frame with Interactive Badges */}
-        <div className="relative w-full max-w-md mx-auto mt-2 mb-4">
+        {/* Tactile Sticker Presentation with Interactive Floating Badges */}
+        <div className="relative w-full max-w-sm mx-auto mt-2 mb-4">
           {/* Floating Badge 1 */}
           <div
             id="hero-badge-1"
             style={badge1Style}
-            className="absolute -top-6 -left-6 md:-left-12 z-20 bg-bright-lime text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300"
+            className="absolute -top-4 -left-6 md:-left-12 z-20 bg-bright-lime text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300 pointer-events-none select-none"
           >
             ⚡ BACKEND &amp; AI
           </div>
@@ -95,7 +95,7 @@ export default function Hero() {
           <div
             id="hero-badge-2"
             style={badge2Style}
-            className="absolute top-1/3 -right-6 md:-right-10 z-20 bg-tangerine text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300"
+            className="absolute top-1/3 -right-6 md:-right-10 z-20 bg-tangerine text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300 pointer-events-none select-none"
           >
             🛠️ FULL-STACK DEV
           </div>
@@ -104,34 +104,42 @@ export default function Hero() {
           <div
             id="hero-badge-3"
             style={badge3Style}
-            className="absolute -bottom-4 -left-4 z-20 bg-card-cream text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300"
+            className="absolute -bottom-2 -left-4 md:-left-8 z-20 bg-card-cream text-warm-charcoal font-mono text-xs font-bold px-3.5 py-1.5 rounded-full border-[2px] border-warm-charcoal shadow-[3px_3px_0px_#292820] transition-all duration-300 pointer-events-none select-none"
           >
             📍 HYDERABAD / GLOBAL
           </div>
 
-          {/* Polaroid Style Photo Container */}
-          <div
-            id="hero-polaroid-frame"
-            style={{ transform: polaroidTransform }}
-            className="relative bg-card-cream p-4 pb-6 rounded-2xl border-[2.5px] border-warm-charcoal shadow-[8px_8px_0px_#292820] transition-all duration-300"
-          >
-            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-dim border-[1.5px] border-warm-charcoal">
-              <img
-                alt="Krishna Yaswanth Panchagnula portrait"
-                className="w-full h-full object-cover object-top filter grayscale contrast-110 hover:contrast-125 transition-all duration-500"
-                src="/media/portrait.png"
-                loading="eager"
-              />
-              <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-warm-charcoal text-white px-2.5 py-1 rounded-full text-xs font-mono">
-                <span className="w-2 h-2 rounded-full bg-bright-lime animate-ping"></span>
-                <span>ONLINE // BUILDING</span>
+          {/* Floating Die-Cut Sticker Container */}
+          <div className="sticker-float relative z-10">
+            <div
+              id="hero-sticker-frame"
+              style={{ transform: polaroidTransform }}
+              className="relative transition-transform duration-300 flex flex-col items-center group cursor-pointer"
+              onClick={handleShuffle}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleShuffle();
+                }
+              }}
+              aria-label="Click to tilt sticker and randomize badges"
+            >
+              <div className="relative transform group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <img
+                  alt="Krishna Yaswanth Panchagnula portrait sticker"
+                  className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[340px] h-auto object-contain sticker-shadow-lg select-none pointer-events-none"
+                  src="/images/krishna-hero-sticker.png"
+                  loading="eager"
+                  width={340}
+                  height={453}
+                />
+                <div className="absolute bottom-2 right-2 flex items-center gap-1.5 bg-warm-charcoal text-white px-3 py-1 rounded-full text-xs font-mono border-[1.5px] border-warm-charcoal shadow-[2px_2px_0px_#292820]">
+                  <span className="w-2 h-2 rounded-full bg-bright-lime animate-ping"></span>
+                  <span>ONLINE // BUILDING</span>
+                </div>
               </div>
-            </div>
-            <div className="mt-4 flex items-center justify-between px-2">
-              <span className="font-headline text-base uppercase tracking-tight text-warm-charcoal font-extrabold">
-                Krishna Yaswanth Panchagnula
-              </span>
-              <span className="font-mono text-xs text-warm-charcoal/70">ARCH // 2026</span>
             </div>
           </div>
 
@@ -148,7 +156,7 @@ export default function Hero() {
                 size={18}
                 className="group-hover:rotate-180 transition-transform duration-500"
               />
-              <span>Tilt Frame &amp; Badges</span>
+              <span>Tilt Sticker &amp; Badges</span>
             </button>
           </div>
         </div>
